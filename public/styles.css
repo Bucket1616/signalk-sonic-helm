@@ -1,0 +1,195 @@
+/* ==========================================================================
+   1. CORE RESET & VARIABLES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Theme Variables — Base (Day)
+   The :root block alone defines day colors.
+   Night overrides are applied below via attribute or media query.
+   -------------------------------------------------------------------------- */
+:root {
+    /* Page / body */
+    --page-bg: #ffffff;
+    --page-text: #1a1e24;
+
+    /* Charts */
+    --chart-bg: #ffffff;
+    --chart-text-main: #111111;
+    --chart-text-muted: #333333;
+    --chart-grid-light: #eeeeee;
+    --chart-grid-dark: #cccccc;
+    --chart-line-data: #00aa00;
+
+    /* Cards */
+    --card-bg: #ffffff;
+    --card-border: #dcdfe6;
+    --card-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    /* Headings */
+    --accent-color: #1a1e24;
+
+    /* Buttons */
+    --btn-bg: #ffffff;
+    --btn-text: #333333;
+    --btn-border: #dcdfe6;
+    --btn-active-bg: #1a1e24;
+    --btn-active-text: #ffffff;
+    --btn-active-border: #1a1e24;
+}
+
+/* --------------------------------------------------------------------------
+   Night — via explicit [data-theme="night"] attribute
+   -------------------------------------------------------------------------- */
+:root[data-theme="night"] {
+    --page-bg: #08090a;
+    --page-text: #e2e8f0;
+
+    --chart-bg: #14171a;
+    --chart-text-main: #e2e8f0;
+    --chart-text-muted: #a0aec0;
+    --chart-grid-light: #2d3139;
+    --chart-grid-dark: #4a5568;
+    --chart-line-data: #ff3b30;
+
+    --card-bg: #14171a;
+    --card-border: #2d3139;
+    --card-shadow: none;
+
+    --accent-color: #ff3b30;
+
+    --btn-bg: #14171a;
+    --btn-text: #a0aec0;
+    --btn-border: #2d3139;
+    --btn-active-bg: #ff3b30;
+    --btn-active-text: #ffffff;
+    --btn-active-border: #ff3b30;
+}
+
+/* --------------------------------------------------------------------------
+   Night — via system preference (only when NOT explicitly set to Day)
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="day"]) {
+        --page-bg: #08090a;
+        --page-text: #e2e8f0;
+
+        --chart-bg: #14171a;
+        --chart-text-main: #e2e8f0;
+        --chart-text-muted: #a0aec0;
+        --chart-grid-light: #2d3139;
+        --chart-grid-dark: #4a5568;
+        --chart-line-data: #ff3b30;
+
+        --card-bg: #14171a;
+        --card-border: #2d3139;
+        --card-shadow: none;
+
+        --accent-color: #ff3b30;
+
+        --btn-bg: #14171a;
+        --btn-text: #a0aec0;
+        --btn-border: #2d3139;
+        --btn-active-bg: #ff3b30;
+        --btn-active-text: #ffffff;
+        --btn-active-border: #ff3b30;
+    }
+}
+
+/* ==========================================================================
+   2. BODY & GLOBAL — uses CSS variables only
+   ========================================================================== */
+body {
+    background-color: var(--page-bg);
+    color: var(--page-text);
+}
+
+h1, h2, .critical-data {
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   3. DASHBOARD / CARDS
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 90px; /* safety for App-Dock menu */
+}
+
+.instrument-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: var(--card-shadow);
+}
+
+/* ==========================================================================
+   4. LAYOUT COMPONENTS
+   ========================================================================== */
+.controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.mode-group {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.chart-section {
+    margin-bottom: 14px;
+}
+
+.chart-labels {
+    display: flex;
+    gap: 24px;
+    padding: 6px 10px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    background-color: var(--page-bg);
+}
+
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+#controls button {
+    padding: 6px 10px;
+    margin-right: 4px;
+    border: 1px solid var(--btn-border);
+    border-radius: 4px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#controls button.active-mode {
+    background-color: var(--btn-active-bg);
+    color: var(--btn-active-text);
+    border-color: var(--btn-active-border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

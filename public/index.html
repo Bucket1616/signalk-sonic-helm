@@ -1,0 +1,62 @@
+<head>
+    <title>Sonic Helm</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="color-scheme" content="light dark">
+</head>
+
+<h1>Sonic Helm</h1>
+
+<div id="controls">
+
+    <!-- Row 1: Mode buttons -->
+    <div class="mode-group">
+        <button id="dayModeBtn">Day Mode</button>
+        <button id="autoModeBtn" class="active-mode">Auto Mode</button>
+        <button id="nightModeBtn">Night Mode</button>
+    </div>
+
+    <!-- Row 2: Status + Config + Action buttons -->
+    <div class="controls-row">
+        <select id="configSelector" disabled>
+            <option value="">Loading configs...</option>
+        </select>
+        <button id="startMonitoringBtn">Start Monitoring</button>
+        <button id="stopMonitoringBtn" style="display: none;">Stop Monitoring</button>
+        <button id="enableAudioBtn" style="display: none;">Enable Audio</button>
+        <button id="stopAudioBtn" style="display: none;">Stop Audio</button>
+        <p id="status">Status: Disconnected</p>
+    </div>
+
+    <!-- Row 3: History + Volume -->
+    <div class="controls-row">
+        <label for="historySelect">History Window:</label>
+        <select id="historySelect">
+            <option value="10">10 Minutes</option>
+            <option value="30">30 Minutes</option>
+            <option value="60">60 Minutes</option>
+        </select>
+        <label for="volumeSlider">Volume: <span id="volumeDisplay">30%</span></label>
+        <input type="range" id="volumeSlider" min="0" max="100" value="30">
+    </div>
+
+</div>
+
+<!-- Frequency histogram section -->
+<div class="chart-section">
+    <div class="chart-labels">
+        <div><strong>Frequency Path:</strong> <span id="display-freq-path">--</span></div>
+        <div><strong>Recent Freq Value:</strong> <span id="display-freq-val">--</span></div>
+    </div>
+    <canvas id="freqHistogramCanvas" width="600" height="220"></canvas>
+</div>
+
+<!-- Duty Cycle histogram section -->
+<div class="chart-section">
+    <div class="chart-labels">
+        <div><strong>Duty Cycle Path:</strong> <span id="display-dutycycle-path">--</span></div>
+        <div><strong>Recent Duty Cycle Value:</strong> <span id="display-dutycycle-val">--</span></div>
+    </div>
+    <canvas id="dutyCycleHistogramCanvas" width="600" height="220"></canvas>
+</div>
+
+<script src="app.js" defer></script>

@@ -1,0 +1,19 @@
+{
+  "name": "signalk-sonic-helm",
+  "author": "Your Name",
+  "license": "MIT",
+  "version": "0.1.0",
+  "description": "Synthesizes SignalK telemetry into dynamic audio frequencies and intervals.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1"
+  },
+  "signalk": {
+    "appIcon": "images/sonichelm.png",
+    "displayName": "Sonic Helm"
+  },
+ "keywords": [
+    "signalk-node-server-plugin",
+    "signalk-webapp"
+  ]
+}
